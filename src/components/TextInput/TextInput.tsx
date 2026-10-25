@@ -22,13 +22,25 @@ export default function TextInput({
   }
 
   return (
-    <div>
-      <textarea
-        value={text}
-        onChange={handleChange}
-        placeholder={placeholder}
-        rows={6}
-      />
-    </div>
-  );
+  <div className="w-full">
+    <label
+      htmlFor="text-input"
+      className="mb-2 block font-medium text-gray-700"
+    >
+      Your Text
+    </label>
+
+    <textarea
+      id="text-input"
+      value={text}
+      onChange={handleChange}
+      placeholder={placeholder}
+      rows={6}
+      className="w-full rounded-lg border border-gray-300
+        bg-white p-4 text-gray-800
+        focus:border-blue-500 focus:outline-none
+        focus:ring-2 focus:ring-blue-200"
+    />
+  </div>
+);
 }

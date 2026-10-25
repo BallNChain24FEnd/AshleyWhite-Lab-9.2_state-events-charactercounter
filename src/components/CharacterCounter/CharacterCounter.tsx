@@ -48,21 +48,30 @@ export default function CharacterCounter({
     : 0;
 
   return (
-    <section>
-      <h2>Write Your Content</h2>
+  <section className="rounded-xl bg-white p-6 shadow-md sm:p-8">
+    <h2 className="mb-4 text-xl font-semibold text-gray-800">
+      Write Your Content
+    </h2>
 
-      <TextInput onTextChange={handleTextChange} />
+    <TextInput onTextChange={handleTextChange} />
 
-      <StatsDisplay stats={stats} />
+    <StatsDisplay stats={stats} />
 
-      <h3>Word Count Goals</h3>
+    <div className="mt-6">
+      <h3 className="mb-3 text-lg font-semibold text-gray-800">
+        Word Count Goals
+      </h3>
 
-      <p>Minimum Words: {minWords}</p>
-      <p>Maximum Words: {maxWords}</p>
-      <p>Target Reading Time: {targetReadingTime} minute(s)</p>
+      <div className="mb-3 flex flex-wrap justify-between gap-2 text-sm text-gray-600">
+        <p>Min: {minWords} words</p>
+        <p>Max: {maxWords} words</p>
+      </div>
 
       {/* Show word progress */}
-      <label htmlFor="word-progress">
+      <label
+        htmlFor="word-progress"
+        className="mb-2 block text-sm font-medium"
+      >
         Word Progress: {Math.round(progress)}%
       </label>
 
@@ -70,18 +79,34 @@ export default function CharacterCounter({
         id="word-progress"
         value={progress}
         max={100}
+        className="h-4 w-full accent-blue-600"
       />
 
       {/* Show word count feedback */}
-      {stats.wordCount < minWords ? (
-        <p>Keep writing! You have not reached the minimum.</p>
-      ) : stats.wordCount <= maxWords ? (
-        <p>Great job! You are within your word count goal.</p>
-      ) : (
-        <p>You have exceeded the maximum word count.</p>
-      )}
+      <div aria-live="polite" className="mt-3">
+        {stats.wordCount < minWords ? (
+          <p className="text-orange-600">
+            Keep writing! You have not reached the minimum.
+          </p>
+        ) : stats.wordCount <= maxWords ? (
+          <p className="text-green-700">
+            Great job! You are within your word count goal.
+          </p>
+        ) : (
+          <p className="text-red-600">
+            You have exceeded the maximum word count.
+          </p>
+        )}
+      </div>
 
-      <p>Current Text: {text}</p>
-    </section>
-  );
+      <p className="mt-4 text-sm text-gray-500">
+        Target Reading Time: {targetReadingTime} minute(s)
+      </p>
+
+      <p className="mt-2 break-words text-sm text-gray-500">
+        Current Text: {text}
+      </p>
+    </div>
+  </section>
+);
 }
