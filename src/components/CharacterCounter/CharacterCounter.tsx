@@ -42,6 +42,11 @@ export default function CharacterCounter({
     });
   }
 
+  // Calculate word progress
+  const progress = maxWords > 0
+    ? Math.min((stats.wordCount / maxWords) * 100, 100)
+    : 0;
+
   return (
     <section>
       <h2>Write Your Content</h2>
@@ -50,9 +55,31 @@ export default function CharacterCounter({
 
       <StatsDisplay stats={stats} />
 
+      <h3>Word Count Goals</h3>
+
       <p>Minimum Words: {minWords}</p>
       <p>Maximum Words: {maxWords}</p>
       <p>Target Reading Time: {targetReadingTime} minute(s)</p>
+
+      {/* Show word progress */}
+      <label htmlFor="word-progress">
+        Word Progress: {Math.round(progress)}%
+      </label>
+
+      <progress
+        id="word-progress"
+        value={progress}
+        max={100}
+      />
+
+      {/* Show word count feedback */}
+      {stats.wordCount < minWords ? (
+        <p>Keep writing! You have not reached the minimum.</p>
+      ) : stats.wordCount <= maxWords ? (
+        <p>Great job! You are within your word count goal.</p>
+      ) : (
+        <p>You have exceeded the maximum word count.</p>
+      )}
 
       <p>Current Text: {text}</p>
     </section>
