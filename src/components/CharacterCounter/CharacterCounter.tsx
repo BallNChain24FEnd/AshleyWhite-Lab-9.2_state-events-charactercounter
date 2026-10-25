@@ -22,6 +22,24 @@ export default function CharacterCounter({
   // Handle text changes
   function handleTextChange(newText: string) {
     setText(newText);
+
+    // Count characters
+    const characterCount = newText.length;
+
+    // Count words
+    const wordCount = newText.trim() === ""
+      ? 0
+      : newText.trim().split(/\s+/).length;
+
+    // Calculate reading time
+    const readingTime = wordCount / 200;
+
+    // Update statistics
+    setStats({
+      characterCount,
+      wordCount,
+      readingTime,
+    });
   }
 
   return (
@@ -31,20 +49,12 @@ export default function CharacterCounter({
       <TextInput onTextChange={handleTextChange} />
 
       <StatsDisplay stats={stats} />
-      
-      <p>Current Text: {text}</p>
-    
-      <button onClick={() => setStats({
-        characterCount: 0,
-        wordCount: 0,
-        readingTime: 0,
-})}>
-  Reset Statistics
-      </button>
 
       <p>Minimum Words: {minWords}</p>
       <p>Maximum Words: {maxWords}</p>
       <p>Target Reading Time: {targetReadingTime} minute(s)</p>
+
+      <p>Current Text: {text}</p>
     </section>
   );
 }
