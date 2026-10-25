@@ -1,1 +1,22 @@
 @import "tailwindcss";
+@import "tailwindcss";
+
+/* Word progress bar */
+progress {
+  accent-color: #0d9488;
+}
+
+progress::-webkit-progress-bar {
+  background-color: #e2e8f0;
+  border-radius: 10px;
+}
+
+progress::-webkit-progress-value {
+  background-color: #0d9488;
+  border-radius: 10px;
+}
+
+progress::-moz-progress-bar {
+  background-color: #0d9488;
+  border-radius: 10px;
+}

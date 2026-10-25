@@ -79,7 +79,7 @@ export default function CharacterCounter({
         id="word-progress"
         value={progress}
         max={100}
-        className="h-4 w-full accent-blue-600"
+        className="h-4 w-full accent-teal-600"
       />
 
       {/* Show word count feedback */}
@@ -103,8 +103,8 @@ export default function CharacterCounter({
         Target Reading Time: {targetReadingTime} minute(s)
       </p>
 
-      <p className="mt-2 break-words text-sm text-gray-500">
-        Current Text: {text}
+      <p className="mt-2 text-sm text-gray-500">
+        You have entered {text.length} characters.
       </p>
     </div>
   </section>
