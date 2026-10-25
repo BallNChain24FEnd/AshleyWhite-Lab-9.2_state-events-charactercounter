@@ -1,32 +1,44 @@
-# React + TypeScript + Vite
+# Character Counter — Lab 9.2
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+## Project Description
+A React and TypeScript application that tracks text statistics while users type. Built with Vite and Tailwind CSS to practice state management, event handling, and component communication.
 
-Currently, two official plugins are available:
+## Features
+1. Real-time character counting.
+2. Automatic word counting.
+3. Estimated reading time.
+4. Word-count goals with a progress bar.
+5. Responsive layout with visual feedback.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## How to Run
+After cloning or download this repository, open the project folder in VS Code.
+1. Run `npm install`.
+2. Run `npm run dev`.
+3. Open the localhost URL shown in the terminal.
+4. Run `npm run build` to verify production build.
 
-## React Compiler
+## Component Use
+- **TextInput:** Accepts text and sends changes through a callback.
+- **StatsDisplay:** Displays character count, word count, and reading time.
+- **CharacterCounter:** Manages state and connects both components.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Reflection Questions
 
-## Expanding the Oxlint configuration
+**1. How did you handle state updates?**
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+I used `useState` to track the text and statistics. An `onChange` event updates the state whenever the user types.
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+**2. How did you calculate reading time?**
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+I divided the word count by 200, using an estimated reading speed of 200 words per minute.
+
+**3. How did you keep the UI responsive?**
+
+React updates the displayed statistics when state changes. The calculations are simple, so the interface responds quickly.
+
+**4. What challenges did you face?**
+
+Handling empty input and extra spaces required additional checks. I used `trim()` and `split()` to calculate words correctly.
+
+## Technologies
+React, TypeScript, Vite, Tailwind CSS
